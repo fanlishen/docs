@@ -1,92 +1,59 @@
----
-title: "Creating test case using script mode"
-sidebar: katalon_studio_tutorials_sidebar
-permalink: katalon-studio/tutorials/create_test_case_using_script_mode.html
-description: "In addition to the Manual view, Katalon Studio allows expert users to programmatically write automation test in the Script mode of test cases."
----
-In addition to the **[Manual view](/x/9YEw)**, Katalon Studio allows expert users to programmatically write automation test in the Script view of test cases. Users with Groovy/Java background can easily edit test scripts in this view.
+使用脚本模式创建测试用例
+预计阅读时间：4分钟
 
-This tutorial walks you through the steps needed to manually write a very basic automation test script using Katalon Studio. After going through this article, you will be able to understand and be able to use _import_ statements and **[built-in keywords](/x/VQAM)** to compose test scripts. It's recommended that you should have some basic scripting background, preferably using **[Groovy](http://groovy-lang.org/)**, to efficiently use the scripting capability.
+除了手动视图外，Katalon Studio还允许专家用户以编程方式在测试用例的脚本视图中编写自动化测试。具有Groovy / Java背景的用户可以在此视图中轻松编辑测试脚本。
 
-Given a sample test case with the following steps:
+本教程将指导您使用Katalon Studio手动编写非常基本的自动化测试脚本。阅读完本文后，您将能够理解并能够使用import语句和内置关键字来编写测试脚本。建议你应该有一些基本的脚本编写背景，最好使用Groovy，以有效地使用脚本功能。
 
-*   _Open the browser_
-*   _Navigate to a website_
-*   _Click on certain control_
-*   _Validate if a control exists on the page_
-*   _Close the browser_
+给出一个带有以下步骤的示例测试用例：
 
-Follow these steps to automate the above test scenario in **Script view**:
+打开浏览器
+导航到一个网站
+单击某个控件
+验证页面上是否存在控件
+关闭浏览器
+按照以下步骤在脚本视图中自动执行上述测试方案：
+1.从主菜单中选择 File > New > Test Case 以创建测试用例。提供新测试用例的名称，然后单击“OK”。
 
-1\. Select **File > New > Test Case** from the main menu to create a test case. Provide the name for the new test case, then click **OK**.
+2.创建新的测试用例后，切换到“脚本”视图。手动视图中指定的测试步骤将自动转换为脚本视图中的Groovy脚本。
 
-![new test case Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/1.-Katalon-new-test-case1.png)
+测试脚本中的import语句允许引用要使用的类。展开“import”部分以查看Katalon Studio的所有默认导入类。每个import语句中“as”后面的名称是该类的别名。您可以更改每个类的别名。这些类是编写测试脚本所必需的。
 
-2. Once a new test case is created, you switch to the **Script view.** Test steps specified in the Manual view are automatically translated to Groovy script in the **Script view**.
+Katalon Studio是一款支持关键字驱动测试的自动化工具。所有关键字都相应地分为WebUI，Mobile和WebService包。按“Ctrl + Space”可从导入的类中查看这些包和函数。
 
-![Script mode Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/2.-Katalon-script-view.png)
-
-The import statement in a test script allows referencing to classes to be used. Expand the 'import' section to see all default imported classes by Katalon Studio. The name after 'as' in each import statement is an alias for the class. You can change the alias for each class. These classes are necessary for composing a test script.
-
-Katalon Studio is an automation tool that supports keyword-driven testing. All keywords are grouped into **[WebUI](http://docs.katalon.com/display/KD/Web+UI)**, **[Mobile](http://docs.katalon.com/display/KD/Mobile)** and **[WebService](http://docs.katalon.com/display/KD/Web+Service)** packages accordingly. Press 'Ctrl + Space' to view these packages and functions from the imported classes.
-
-3. In this scenario, you will create a Web application test script, so you can make use of the **[Web UI](/x/VQAM) [built-in keywords](/x/VQAM)**. To use a built-in **WebUI** keyword, enter the following syntax into the editor.
-
-```groovy
+3.在此测试方案中，您将创建Web应用程序测试脚本，以便可以使用Web UI内置关键字。要使用内置WebUI关键字，请在编辑器中输入以下语法。
 WebUI.
 
-```
+4.输入点字符.之后，所有内置关键字及其对WebUI测试的描述如下所示
 
-4. After entering the dot character (.), all built-in keywords and their description for WebUI testing appear as below:
+5.选择[Open Browser ]关键字。此关键字打开浏览器并导航到指定的URL（如果提供的话），所选关键字的详细信息显示在弹出屏幕中。
 
-![Content Assist Dialog Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/4.-Content-Assist.png)
+6.输入[Navigate To Url]关键字。此关键字导航到指定的URL。现在，输入www.katalon.com的网址作为参数的值。
 
-5. Select the **[**Open Browser**](/display/KD/%5BWebUI%5D+Open+Browser)** keyword. This keyword opens a browser and navigates to the specified URL if provided. The detail for a selected keyword is shown in a popup screen.
 
-![Open Browser Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/5.-Katalon-Open-Browser.png)
+7.输入Click.  此关键字表示对给定对象的单击操作。您需要为此操作指定一个对象。
 
-6\. Enter the [**Navigate To Url**](/display/KD/%5BWebUI%5D+Navigate+to+Url) keyword. This keyword navigates to a specified URL. For now, enter the URL of Katalon Studio ([katalon.com](https://www.katalon.com/)) as the value for the parameter.
+8.使用以下语法可以引用Object Repository中的对象（或者，您可以将对象拖放到测试用例编辑器以生成语法）：
 
-![Navigate URL keyword Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/6.-Katalon-Nagivate-to-url.png)
+findTestObject（'{Object ID}'）
 
-7\. Enter the **[Click](/display/KD/%5BWebUI%5D+Click)**. This keyword represents the click action on a given object. You need to specify an object for this action.
+其中Object ID是Katalon Studio中该对象的ID值。
 
-![Click keyword Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/7.-Katalon-Click-keyword.png)
+9.您可以从[Test Object Properties’对话框中找到对象的ID值。例如：
 
-8\. Use the following syntax to refer to an object in **Object Repository** (alternatively, you can drag and drop the object to test case editor to generate the syntax):
+10.输入[Verify Element Present]关键字。此关键字验证在执行测试程序在浏览器上是否显示该对象。与上一步类似，您需要指定要与此关键字一起使用的对象。
 
-```groovy
-findTestObject('{Object ID}')
+11.添加[Close Browser]关键字并保存测试用例。
 
-```
+12.使用脚本时，以下API文档非常有用：
 
-Where **Object ID** is the ID of that object in Katalon Studio.
+类			 			            描述
+Builtin Keywords  			常见内置关键字列表
+WebUI Builtin Keywords   		电脑端内置关键字列表
+Web Service Builtin Keywords	接口内置关键字列表
+Mobile Builtin Keywords		移动端内置关键字列表
 
-9. You can find object's ID from its Properties dialog. For example:
+13.恭喜！您已经使用Groovy语言完成了第一个自动化脚本。单击主工具栏中的“运行”以执行测试用例。
 
-![Object ID Properties](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/9.-Katalon-Test-Object.png)
 
-10\. Enter the **[Verify Element Present](/display/KD/%5BWebUI%5D+Verify+Element+Present)**keyword. This keyword validates if a certain object is displayed on the executing browser. Similar to the previous step, you need to specify the object to be used with this keyword.
-
-![Verify element present](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/10.-Katalon-Verify-Element.png)
-
-11\. Add the [**Close Browser**](/display/KD/%5BWebUI%5D+Close+Browser) keyword and save your test case.
-
-![Close Browser keyword](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/11.-Katalon-Close-browser.png)
-
-12\. The following API docs are useful when working with scripts:
-
-| Class | DescriptionDescription |
-| --- | --- |
-| **[Builtin Keywords](http://api-docs.katalon.com/studio/v4.6.0.2/api/com/kms/katalon/core/keyword/BuiltinKeywords.html)** | List of common built-in keywords |
-| **[WebUI Builtin Keywords](http://api-docs.katalon.com/studio/v4.6.0.2/api/com/kms/katalon/core/webui/keyword/WebUiBuiltInKeywords.html)** | List of Web UI built-in keywords |
-| **[Web Service Builtin Keywords](http://api-docs.katalon.com/studio/v4.6.0.2/api/com/kms/katalon/core/webservice/keyword/WSBuiltInKeywords.html)** | List of Web Service built-in keywords |
-| **[Mobile Builtin Keywords](http://api-docs.katalon.com/studio/v4.6.0.2/api/com/kms/katalon/core/mobile/keyword/MobileBuiltInKeywords.html)** | List of Mobile built-in keywords |
-
-13. Congratulations! You have finished your first automation script in Groovy language. Click on **Run** in the main toolbar to execute the test case.
-
-![Run Katalon Studio](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/13.-Katalon-Run.png)
-
-Katalon Studio should be able to execute the script of the test case. Test execution results are shown in Log Viewer as below:
-
-![Test execution Dialog](../../images/katalon-studio/tutorials/create_test_case_using_script_mode/13b-Katalon-Log-viewer.png)
+Katalon Studio应该能够执行测试用例的脚本。测试执行结果显示在日志查看器中，如下所示：
